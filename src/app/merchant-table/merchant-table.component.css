@@ -1,0 +1,121 @@
+/* .merchant-table{
+    margin: 50px 30px;
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 2px 10px 20px rgb(232,227,227);
+    font-family: Arial, Helvetica, sans-serif;
+} */
+
+.merchant-table{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    text-align: center;
+}
+
+/* .merchant-table table{
+    margin-top: 70px;
+    overflow-x: scroll;
+    border-top: 1px rgb(210, 209, 209) solid;
+    border-left: 1px rgb(210, 209, 209) solid; 
+    font-size: small;
+}
+
+.merchant-table th{
+    border-bottom: 1px rgb(0,117,255) solid;
+    border-right: 1px rgb(0,117,255) solid;
+    background-color: rgb(0,117,255);
+    color: white;
+}
+
+.merchant-table td{
+    border-bottom: 1px rgb(210, 209, 209) solid;
+    border-right: 1px rgb(210, 209, 209) solid;
+}
+
+.merchant-table td img{
+    width: 70px;
+    height: 70px;
+} */
+
+.logo img{
+    width: 70px;
+    height: 70px; 
+}
+.go-back{
+    width: 100%;
+    margin: 50px 0px;
+}
+.go-back a{
+    text-decoration: none;
+    padding: 9px 25px;
+    margin: 50px auto;
+    background-color: rgb(0,117,255);
+    border: none;
+    color: white;
+    border-radius: 15px;
+    font-size: 17px;
+}
+
+.go-back a:hover{
+    background-color:  rgba(0, 119, 255, 0.521);
+}
+
+.actions a img{
+    color:  rgba(0, 119, 255, 0.521);
+}
+
+.actions button{
+    border: none;
+    background-color: transparent;
+}
+
+table {
+  width: 100%;
+}
+
+
+
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  background-color: white;
+  box-shadow: 2px 10px 20px rgba(0, 0, 0, 0.196);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.sidenav-links{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidenav-links a{
+    text-decoration: none;
+    margin: 10px 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: green;
+}
+
+.sidenav-links a:hover{
+    background: lightgreen;
+}

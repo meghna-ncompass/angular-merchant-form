@@ -1,0 +1,106 @@
+<div class="breadcrumb">
+  <xng-breadcrumb [separator]="iconTemplate"></xng-breadcrumb>
+  <ng-template #iconTemplate>
+    >
+  </ng-template>
+</div>
+<mat-card class="merchant-table" >
+<h1>Merchants </h1>
+<table mat-table [dataSource]="userService.getUsers()" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let user" (click)="onClickRow(user.id)"> {{user.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+  </ng-container>
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef> Phone No </th>
+    <td mat-cell *matCellDef="let user"> {{user.phone}} </td>
+  </ng-container>
+  <ng-container matColumnDef="website">
+    <th mat-header-cell *matHeaderCellDef> Website </th>
+    <td mat-cell *matCellDef="let user"> {{user.website}} </td>
+  </ng-container>
+  <ng-container matColumnDef="contactName">
+    <th mat-header-cell *matHeaderCellDef> Contact Name </th>
+    <td mat-cell *matCellDef="let user"> {{user.contactName}} </td>
+  </ng-container>
+  <ng-container matColumnDef="contactPhone">
+    <th mat-header-cell *matHeaderCellDef> Contact Phone </th>
+    <td mat-cell *matCellDef="let user"> {{user.contactPhone}} </td>
+  </ng-container>
+  <ng-container matColumnDef="contactEmail">
+    <th mat-header-cell *matHeaderCellDef> Contact Email </th>
+    <td mat-cell *matCellDef="let user"> {{user.contactEmail}} </td>
+  </ng-container>
+  <ng-container matColumnDef="notes">
+    <th mat-header-cell *matHeaderCellDef> Notes </th>
+    <td mat-cell *matCellDef="let user"> {{user.notes}}</td>
+  </ng-container>
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef> Type </th>
+    <td mat-cell *matCellDef="let user"> {{user.type}} </td>
+  </ng-container>
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef> Category </th>
+    <td mat-cell *matCellDef="let user"> {{user.category}} </td>
+  </ng-container>
+  <ng-container matColumnDef="comissionPercentage">
+    <th mat-header-cell *matHeaderCellDef> Comission Percentage </th>
+    <td mat-cell *matCellDef="let user"> {{user.comissionPercentage | currency}} </td>
+  </ng-container>
+  <ng-container matColumnDef="activeFrom">
+    <th mat-header-cell *matHeaderCellDef> Active From </th>
+    <td mat-cell *matCellDef="let user"> {{user.activeFrom}} </td>
+  </ng-container>
+  <ng-container matColumnDef="logo">
+    <th mat-header-cell *matHeaderCellDef> Logo </th>
+    <td mat-cell *matCellDef="let user" class="logo"> 
+        <img src={{user.logoUrl}} alt="logo"/>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="criticalAccount">
+    <th mat-header-cell *matHeaderCellDef> Critical Account  </th>
+    <td mat-cell *matCellDef="let user" [appCritical]="user.criticalAccount">{{user.criticalAccount? 'yes' : 'no'}}</td>
+  </ng-container>
+  <ng-container matColumnDef="paymentOptions">
+    <th mat-header-cell *matHeaderCellDef> Payment Options </th>
+    <td mat-cell *matCellDef="let user"> {{user.paymentOptions}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let user"> 
+        <a routerLink="/merchant-form/{{user.id}}">
+            <img src="assets/edit-icon.svg">
+        </a>
+        <button (click)="openDialog(user.id)">
+            <img src="assets/trash.svg">
+        </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+</table>
+  <button mat-raised-button color="primary" routerLink="/merchant-form/new">
+    Add New Business
+  </button>
+    <mat-drawer #drawer class="sidenav" mode="side">
+      <div class="sidenav-links">
+        <div *ngIf="authService.user | async as user;">
+          <a>{{ user.email }} </a>
+        </div>
+        <a routerLink="/tabs">Merchant Tabs</a>
+        <a routerLink="/merchant-form/new">Merchant Form</a>
+        <a routerLink="/merchants-table">Merchant Table</a>
+        <a (click)="authService.SignOut()">Logout</a>
+      </div>
+    </mat-drawer>
+
+  <div class="sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+  </div>
+</mat-card>

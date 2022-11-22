@@ -1,0 +1,101 @@
+
+<mat-card class="user-form-background" *ngIf="isFormReady && isLoaded && isUserSignedIn">
+    <h1>New Business</h1>
+
+    <mat-form-field appearance="fill" class="user-form">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="user.name" required minlength="4">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="user-form">
+            <mat-label>Email</mat-label>
+            <input 
+                matInput
+                type="email" 
+                name="email" 
+                [(ngModel)]="user.email" 
+                #email="ngModel" 
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+                required>
+    </mat-form-field>
+
+    <div *ngIf="email.touched">
+        <p *ngIf="email.errors?.['required']" class="form-errors">Email is a required field!</p>
+        <p *ngIf="email.errors?.['pattern']" class="form-errors">This is not a valid Email!!!</p>
+    </div>
+    <mat-form-field appearance="fill" class="user-form">
+        <mat-label for="user-phone">Phone No:</mat-label>
+        <input matInput id="user-phone" [(ngModel)]="user.phone" placeholder="+91 XXXXX XXXXX">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="user-form">
+        <mat-label for="user-website">Website:</mat-label>
+        <input matInput id="user-website" [(ngModel)]="user.website" placeholder="www.xyz.com">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="user-form">
+        <mat-label label for="user-contactName">Contact Name:</mat-label>
+        <input matInput id="user-contactName" [(ngModel)]="user.contactName" placeholder="Mr Jim Halpert">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="user-form">
+        <mat-label for="user-contactPhone">Contact Phone:</mat-label>
+        <input matInput id="user-contactPhone" [(ngModel)]="user.contactPhone" placeholder="+91 89XX9 8XX90">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="user-form">
+        <mat-label for="user-contactEmail">Contact Email:</mat-label>
+        <input matInput id="user-contactEmail" [(ngModel)]="user.contactEmail" placeholder="xyz@xyz.com">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="user-form">
+        <mat-label for="user-notes">Notes: </mat-label>
+        <textarea matInput id="user-notes" [(ngModel)]="user.notes" placeholder="name" row="3" cols="4"></textarea>
+    </mat-form-field>
+    <div class="user-form special-fields">
+        <label class="main-label">Type: </label>
+        <mat-radio-group [formControl]="floatLabelControl">
+            <mat-radio-button *ngFor="let type of testTypes | keyvalue" [value]="type.value" [checked]="user.type === type.value">{{ type.key }}</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <mat-form-field appearance="fill" class="user-form ">
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="user.category">
+             <mat-option *ngFor="let opt of Categories | keyvalue" [value]="opt.value" >{{ opt.key}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="user-form">
+        <mat-label for="user-comissionPercentage" >Comission Percentage</mat-label>
+        <input matInput name="user-comissionPercentage" type="number" [(ngModel)]="user.comissionPercentage" >
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="user-form">
+        <mat-label for="user-activeFrom">Active From: </mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="user.activeFrom" [value]="user.activeFrom">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div class="user-form special-fields">
+        <mat-label for="user-logo">Upload Logo </mat-label>
+        <label class="ml" for="input-file-id" class="raised-button">Choose Files</label>
+        <input class="ng-hide" id="input-file-id" multiple type="file" nbInput fullWidth (change)="uploadFile($event)"/>
+        <mat-label class="ml" *ngIf="user.fileName.length === 0">  no file chosen</mat-label>
+        <mat-label class="ml" *ngIf="user.fileName.length !== 0">{{ user.fileName }}</mat-label>
+    </div>
+    <div class="user-form special-fields">
+        <mat-label for="user-criticalAccount">Critical Account</mat-label>
+        <mat-checkbox class="example-margin" (change)="user.criticalAccount = $event.checked" [checked]="user.criticalAccount">
+        </mat-checkbox>
+    </div>
+    <div class="user-form special-fields">
+        <mat-label>Payment Options: </mat-label>
+            <mat-checkbox *ngFor="let payOpts of testPayments | keyvalue" class="example-margin"
+                [checked]="payOpts.value.checked"
+                (change)="togglePaymentOpt(payOpts.key)"
+            >
+            {{ payOpts.value.value }}
+            </mat-checkbox>
+    </div>
+    <div class="form-actions">      
+        <button mat-raised-button  class="cancel-button" routerLink="/merchants-table/">Cancel</button>
+        <button mat-raised-button  class="submit-button" (click)="onSubmit(user)">Submit</button>
+    </div>
+</mat-card>
+<mat-card class="user-form-background" *ngIf="!isLoaded || !isFormReady || !isUserSignedIn">
+    <mat-spinner></mat-spinner>
+</mat-card>
+
+

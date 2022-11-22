@@ -1,0 +1,17 @@
+<div class="breadcrumb">
+  <xng-breadcrumb [separator]="iconTemplate"></xng-breadcrumb>
+  <ng-template #iconTemplate>
+    >
+  </ng-template>
+</div>
+<mat-card>
+    <h1>{{ user.name }}</h1>
+    <div class="user-data">
+        <img src={{user.logoUrl}} alt="logo"/>
+        <div class="user-data-text">
+            <h2>{{ user.website }}</h2>
+            <h2>{{ user.email }}</h2>
+            
+        </div>
+    </div>
+</mat-card>

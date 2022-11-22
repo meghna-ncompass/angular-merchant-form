@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color: rgb(252,252,252);
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-tab-group.mat-primary .mat-ink-bar{
+    background: #00f669;
+}
+
+.mat-ink-bar{
+    border: 2px #00f669 solid;
+    border-radius: 3px;
+    height: 0px !important;
+    transition: none !important;
+}
+
+.mat-tab-label{
+    font-weight: 200;
+}
+
+.mat-tab-label-active{
+    font-weight: 500 !important;
+    color: black !important;
+}
+.breadcrumb{
+    padding: 20px;
+}

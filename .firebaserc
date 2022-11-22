@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "l2-full-stack-9aabb"
+  },
+  "targets": {
+    "l2-full-stack-9aabb": {
+      "hosting": {
+        "angular-merchant-form": [
+          "l2-full-stack-9aabb"
+        ]
+      }
+    }
+  }
+}
